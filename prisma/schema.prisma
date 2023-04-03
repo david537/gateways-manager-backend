@@ -6,6 +6,24 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
+}
+
+model Gateway {
+  id         String       @id @default(auto()) @map("_id") @db.ObjectId
+  serial     String       @unique
+  name       String       @unique
+  ip         String       @unique
+  Peripheral Peripheral[]
+}
+
+model Peripheral {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  uid       Int      @unique
+  vendor    String
+  createdAt DateTime @default(now())
+  status    String
+  gateway   Gateway  @relation(fields: [gatewayId], references: [id])
+  gatewayId String   @db.ObjectId
 }
