@@ -7,7 +7,9 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Gateways')
-    .setDescription('This sample project is managing gateways - master devices that control multiple peripheral devices. ')
+    .setDescription(
+      'This sample project is managing gateways - master devices that control multiple peripheral devices. ',
+    )
     .setVersion('1.0')
     .addTag('gateways')
     .build();
