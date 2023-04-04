@@ -9,17 +9,14 @@ export class GatewaysService {
 
   create(createGatewayDto: CreateGatewayDto) {
     return this.prisma.gateway.create({ data: createGatewayDto });
-    return 'This action adds a new gateway';
   }
 
   findAll() {
     return this.prisma.gateway.findMany();
-    return `This action returns all gateways`;
   }
 
   findOne(id: string) {
     return this.prisma.gateway.findUnique({ where: { id } });
-    return `This action returns a #${id} gateway`;
   }
 
   update(id: string, updateGatewayDto: UpdateGatewayDto) {
@@ -27,11 +24,9 @@ export class GatewaysService {
       where: { id },
       data: this.update,
     });
-    return `This action updates a #${id} gateway`;
   }
 
   remove(id: string) {
     return this.prisma.gateway.delete({ where: { id } });
-    return `This action removes a #${id} gateway`;
   }
 }
