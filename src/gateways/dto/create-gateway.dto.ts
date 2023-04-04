@@ -1,15 +1,15 @@
-import { IsString, IsIP } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { IsIP, IsString } from 'class-validator';
 export class CreateGatewayDto {
   @ApiProperty()
   @IsString()
-  readonly serial: string;
+  serial: string;
 
   @ApiProperty()
   @IsString()
-  readonly name: string;
+  name: string;
 
   @ApiProperty()
   @IsIP('4')
-  readonly ip: string;
+  ip: string;
 }
