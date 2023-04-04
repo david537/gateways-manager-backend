@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "ms-vscode.vscode-typescript-tslint-plugin",
+    "msjsdiag.debugger-for-chrome",
+    "auchenberg.vscode-browser-preview",
+    "esbenp.prettier-vscode",
+    "qest-cz.react-maker",
+    "GraphQL.vscode-graphql"
+  ]
+}
