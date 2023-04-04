@@ -8,6 +8,7 @@ export class GatewaysService {
   constructor(private prisma: PrismaService) {}
 
   create(createGatewayDto: CreateGatewayDto) {
+    return this.prisma.gateway.create({ data: createGatewayDto });
     return 'This action adds a new gateway';
   }
 
