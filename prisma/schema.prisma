@@ -24,6 +24,6 @@ model Peripheral {
   vendor    String
   createdAt DateTime @default(now())
   status    String
-  gateway   Gateway  @relation(fields: [gatewayId], references: [id])
   gatewayId String   @db.ObjectId
+  gateway   Gateway  @relation(fields: [gatewayId], references: [id])
 }
