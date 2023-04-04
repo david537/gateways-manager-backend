@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { CreatePeripheralDto } from './dto/create-peripheral.dto';
 import { UpdatePeripheralDto } from './dto/update-peripheral.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class PeripheralsService {
@@ -22,7 +22,7 @@ export class PeripheralsService {
   update(id: string, updatePeripheralDto: UpdatePeripheralDto) {
     return this.prisma.peripheral.update({
       where: { id },
-      data: this.update,
+      data: updatePeripheralDto,
     });
   }
 
