@@ -22,11 +22,16 @@ export class GatewaysService {
     return `This action returns a #${id} gateway`;
   }
 
-  update(id: number, updateGatewayDto: UpdateGatewayDto) {
+  update(id: string, updateGatewayDto: UpdateGatewayDto) {
+    return this.prisma.gateway.update({
+      where: { id },
+      data: this.update,
+    });
     return `This action updates a #${id} gateway`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
+    return this.prisma.gateway.delete({ where: { id } });
     return `This action removes a #${id} gateway`;
   }
 }
