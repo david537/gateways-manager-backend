@@ -12,10 +12,12 @@ export class GatewaysService {
   }
 
   findAll() {
+    return this.prisma.gateway.findMany();
     return `This action returns all gateways`;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
+    return this.prisma.gateway.findUnique({ where: { id } });
     return `This action returns a #${id} gateway`;
   }
 

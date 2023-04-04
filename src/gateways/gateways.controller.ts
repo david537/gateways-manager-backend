@@ -29,7 +29,7 @@ export class GatewaysController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.gatewaysService.findOne(+id);
+    return this.gatewaysService.findOne(id);
   }
 
   @Patch(':id')
