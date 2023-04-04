@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateGatewayDto } from './dto/create-gateway.dto';
 import { UpdateGatewayDto } from './dto/update-gateway.dto';
-import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class GatewaysService {
@@ -22,7 +22,7 @@ export class GatewaysService {
   update(id: string, updateGatewayDto: UpdateGatewayDto) {
     return this.prisma.gateway.update({
       where: { id },
-      data: this.update,
+      data: updateGatewayDto,
     });
   }
 
