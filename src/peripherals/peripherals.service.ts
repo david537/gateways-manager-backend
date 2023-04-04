@@ -6,24 +6,29 @@ import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class PeripheralsService {
   constructor(private prisma: PrismaService) {}
-  
+
   create(createPeripheralDto: CreatePeripheralDto) {
-    return 'This action adds a new peripheral';
+    return this.prisma.peripheral.create({ data: createPeripheralDto });
   }
 
   findAll() {
-    return `This action returns all peripherals`;
+    return this.prisma.peripheral.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} peripheral`;
+  findOne(id: string) {
+    return this.prisma.peripheral.findUnique({ where: { id } });
   }
 
-  update(id: number, updatePeripheralDto: UpdatePeripheralDto) {
-    return `This action updates a #${id} peripheral`;
+  update(id: string, updatePeripheralDto: UpdatePeripheralDto) {
+    return this.prisma.peripheral.update({
+      where: { id },
+      data: this.update,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} peripheral`;
+  remove(id: string) {
+    return this.prisma.peripheral.delete({
+      where: { id },
+    });
   }
 }
