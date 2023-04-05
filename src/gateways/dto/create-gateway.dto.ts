@@ -9,7 +9,7 @@ export class CreateGatewayDto {
   @IsString()
   name: string;
 
-  @ApiProperty()
+  @ApiProperty({ description: 'Validate IPv4' })
   @IsIP('4')
   ip: string;
 }
