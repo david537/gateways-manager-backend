@@ -1,17 +1,9 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
-import { GatewaysService } from './gateways.service';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { CreateGatewayDto } from './dto/create-gateway.dto';
 import { UpdateGatewayDto } from './dto/update-gateway.dto';
-import { ApiTags, ApiCreatedResponse, ApiOkResponse } from '@nestjs/swagger';
 import { GatewayEntity } from './entities/gateway.entity';
+import { GatewaysService } from './gateways.service';
 
 @ApiTags('gateways')
 @Controller('gateways')
@@ -20,31 +12,32 @@ export class GatewaysController {
 
   @Post()
   @ApiCreatedResponse({ type: GatewayEntity })
-  create(@Body() createGatewayDto: CreateGatewayDto) {
-    return this.gatewaysService.create(createGatewayDto);
+  async create(@Body() createGatewayDto: CreateGatewayDto) {
+    return new GatewayEntity(await this.gatewaysService.create(createGatewayDto));
   }
 
   @Get()
   @ApiOkResponse({ type: GatewayEntity, isArray: true })
-  findAll() {
-    return this.gatewaysService.findAll();
+  async findAll() {
+    const gateways = await this.gatewaysService.findAll();
+    return gateways.map((gateway) => new GatewayEntity(gateway));
   }
 
   @Get(':id')
   @ApiOkResponse({ type: GatewayEntity })
-  findOne(@Param('id') id: string) {
-    return this.gatewaysService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    return new GatewayEntity(await this.gatewaysService.findOne(id));
   }
 
   @Patch(':id')
   @ApiOkResponse({ type: GatewayEntity })
-  update(@Param('id') id: string, @Body() updateGatewayDto: UpdateGatewayDto) {
-    return this.gatewaysService.update(id, updateGatewayDto);
+  async update(@Param('id') id: string, @Body() updateGatewayDto: UpdateGatewayDto) {
+    return new GatewayEntity(await this.gatewaysService.update(id, UpdateGatewayDto));
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: GatewayEntity })
-  remove(@Param('id') id: string) {
-    return this.gatewaysService.remove(id);
+  async remove(@Param('id') id: string) {
+    return new GatewayEntity(await this.gatewaysService.remove(id));
   }
 }

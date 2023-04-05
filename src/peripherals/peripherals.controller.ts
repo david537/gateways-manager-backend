@@ -1,12 +1,4 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Patch,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { CreatePeripheralDto } from './dto/create-peripheral.dto';
 import { UpdatePeripheralDto } from './dto/update-peripheral.dto';
@@ -20,34 +12,32 @@ export class PeripheralsController {
 
   @Post()
   @ApiCreatedResponse({ type: PeripheralEntity })
-  create(@Body() createPeripheralDto: CreatePeripheralDto) {
-    return this.peripheralsService.create(createPeripheralDto);
+  async create(@Body() createPeripheralDto: CreatePeripheralDto) {
+    return new PeripheralEntity(await this.peripheralsService.create(createPeripheralDto));
   }
 
   @Get()
   @ApiOkResponse({ type: PeripheralEntity, isArray: true })
-  findAll() {
-    return this.peripheralsService.findAll();
+  async findAll() {
+    const peripherals = await this.peripheralsService.findAll();
+    return peripherals.map((peripheral) => new PeripheralEntity(peripheral));
   }
 
   @Get(':id')
   @ApiOkResponse({ type: PeripheralEntity })
-  findOne(@Param('id') id: string) {
-    return this.peripheralsService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    return new PeripheralEntity(await this.peripheralsService.findOne(id));
   }
 
   @Patch(':id')
   @ApiOkResponse({ type: PeripheralEntity })
-  update(
-    @Param('id') id: string,
-    @Body() updatePeripheralDto: UpdatePeripheralDto,
-  ) {
-    return this.peripheralsService.update(id, updatePeripheralDto);
+  async update(@Param('id') id: string, @Body() updatePeripheralDto: UpdatePeripheralDto) {
+    return new PeripheralEntity(await this.peripheralsService.update(id, updatePeripheralDto));
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: PeripheralEntity })
-  remove(@Param('id') id: string) {
-    return this.peripheralsService.remove(id);
+  async remove(@Param('id') id: string) {
+    return new PeripheralEntity(await this.peripheralsService.remove(id));
   }
 }
