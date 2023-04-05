@@ -16,13 +16,18 @@ export class GatewaysService {
   }
 
   findOne(id: string) {
-    return this.prisma.gateway.findUnique({ where: { id } });
+    return this.prisma.gateway.findUnique({
+      where: { id },
+      include: {
+        peripherals: true
+      }
+    });
   }
 
   update(id: string, updateGatewayDto: UpdateGatewayDto) {
     return this.prisma.gateway.update({
       where: { id },
-      data: updateGatewayDto,
+      data: updateGatewayDto
     });
   }
 
