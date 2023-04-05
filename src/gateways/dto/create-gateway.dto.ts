@@ -1,15 +1,18 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsIP, IsString } from 'class-validator';
+import { IsIP, IsNotEmpty, IsString } from 'class-validator';
 export class CreateGatewayDto {
-  @ApiProperty()
   @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
   serial: string;
 
-  @ApiProperty()
   @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
   name: string;
 
-  @ApiProperty({ description: 'Validate IPv4' })
   @IsIP('4')
+  @IsNotEmpty()
+  @ApiProperty({ description: 'Validate IPv4' })
   ip: string;
 }

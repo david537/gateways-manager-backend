@@ -1,24 +1,24 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDate, IsInt, IsString } from 'class-validator';
+import { IsInt, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreatePeripheralDto {
-  @ApiProperty()
   @IsInt()
+  @IsNotEmpty()
+  @ApiProperty()
   uid: number;
 
-  @ApiProperty()
   @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
   vendor: string;
 
-  @ApiProperty()
-  @IsDate()
-  createdAt: Date;
-
-  @ApiProperty()
   @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
   status: string;
 
-  @ApiProperty()
   @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
   gatewayId: string;
 }
