@@ -12,7 +12,11 @@ export class GatewaysService {
   }
 
   findAll() {
-    return this.prisma.gateway.findMany();
+    return this.prisma.gateway.findMany({
+      include: {
+        peripherals: true
+      }
+    });
   }
 
   findOne(id: string) {
