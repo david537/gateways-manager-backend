@@ -12,15 +12,15 @@ datasource db {
 
 model Gateway {
   id          String       @id @default(auto()) @map("_id") @db.ObjectId
-  serial      String       @unique
-  name        String       @unique
-  ip          String       @unique
+  serial      String
+  name        String
+  ip          String
   peripherals Peripheral[]
 }
 
 model Peripheral {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  uid       Int      @unique
+  uid       Int
   vendor    String
   createdAt DateTime @default(now())
   status    String

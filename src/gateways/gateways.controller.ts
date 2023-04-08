@@ -32,7 +32,7 @@ export class GatewaysController {
   @Patch(':id')
   @ApiOkResponse({ type: GatewayEntity })
   async update(@Param('id') id: string, @Body() updateGatewayDto: UpdateGatewayDto) {
-    return new GatewayEntity(await this.gatewaysService.update(id, UpdateGatewayDto));
+    return new GatewayEntity(await this.gatewaysService.update(id, updateGatewayDto));
   }
 
   @Delete(':id')

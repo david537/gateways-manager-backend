@@ -15,7 +15,4 @@ export class CreateGatewayDto {
   @IsNotEmpty()
   @ApiProperty({ description: 'Validate IPv4' })
   ip: string;
-
-  @ApiProperty()
-  peripherals: any;
 }

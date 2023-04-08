@@ -3,6 +3,10 @@ import { Gateway } from '@prisma/client';
 import { PeripheralEntity } from 'src/peripherals/entities/peripheral.entity';
 
 export class GatewayEntity implements Gateway {
+  constructor(partial: Partial<PeripheralEntity>) {
+    Object.assign(this, partial);
+  }
+
   @ApiProperty()
   id: string;
 
@@ -17,12 +21,4 @@ export class GatewayEntity implements Gateway {
 
   @ApiProperty({ required: false, type: PeripheralEntity })
   peripherals: PeripheralEntity;
-
-  constructor({ peripherals, ...data }: any) {
-    Object.assign(this, data);
-
-    if (peripherals) {
-      this.peripherals = new PeripheralEntity(peripherals);
-    }
-  }
 }
